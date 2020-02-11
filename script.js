@@ -6,6 +6,8 @@ let win;
 document.getElementById('board').addEventListener('click', handleTurn)
 document.getElementById('reset-button').addEventListener('click', start)
 
+
+//intializer
 start()
 function start(){
     board = [
@@ -16,12 +18,14 @@ function start(){
 marker()
 }
 
-
+//makes marks appear, as well as changes status message 
 function marker(){
     board.forEach(function(mark, index){
-        squares[index].textContent= mark;
+           
+             squares[index].textContent = mark; 
     })
     messages.textContent = win === "T"? `It is a tie!`: win ? `${win} wins!` : `It is ${turn}'s turn`;
+
 }   
 
 function handleTurn(event){

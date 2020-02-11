@@ -24,6 +24,9 @@ body{
     border: 2px solid black;
     height: 150px;
     width: 150px;
+    justify-content: center;
+    text-align: match-parent;
+    font-size: 140px;
 }
 
 #reset-button {
