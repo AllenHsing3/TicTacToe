@@ -1,11 +1,17 @@
 let board;
-const squares = Array.from(document.querySelectorAll('#board div'))
+const squares = Array.from(document.getElementsByClassName('square'))
 const messages = document.querySelector('h2')
 let turn = "X"
 let win;
 document.getElementById('board').addEventListener('click', handleTurn)
 document.getElementById('reset-button').addEventListener('click', start)
-
+//need to fix score board
+let scoreOne = document.getElementById('scoreOne')
+let scoreTwo = document.getElementById('scoreTwo')
+playerOneWins = 0
+playerTwoWins = 0
+//  if(winner == "X"){
+//   scoreOne.textContent = playerOneWins++}
 
 //intializer
 start()
@@ -18,24 +24,24 @@ function start(){
 marker()
 }
 
-//makes marks appear, as well as changes status message 
 function marker(){
     board.forEach(function(mark, index){
-           
+
              squares[index].textContent = mark; 
     })
     messages.textContent = win === "T"? `It is a tie!`: win ? `${win} wins!` : `It is ${turn}'s turn`;
-
 }   
 
 function handleTurn(event){
     let idx = squares.findIndex(function(square){
         return square === event.target;
     });
-    board[idx] = turn;
-    turn = turn == "X" ? "O" : "X";
-    win = getWinner()
-    marker()
+    if (board[idx]=== ""){
+        board[idx] = turn;
+        turn = turn == "X" ? "O" : "X";
+        win = getWinner()
+        marker()
+    }else marker()
 }
 
 let winningCombos = [
@@ -54,6 +60,7 @@ function getWinner(){
     winningCombos.forEach(function(combo, index){
         if(board[combo[0]] && board[combo[0]] == board[combo[1]] && board[combo[0]] == board[combo[2]] && board[combo[0]])
         winner = board[combo[0]];
+        console.log(winner)
     })
     return winner ? winner : board.includes("") ? null : "T";
 }
