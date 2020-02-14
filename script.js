@@ -8,10 +8,10 @@ document.getElementById('reset-button').addEventListener('click', start)
 //need to fix score board
 let scoreOne = document.getElementById('scoreOne')
 let scoreTwo = document.getElementById('scoreTwo')
-playerOneWins = 0
-playerTwoWins = 0
+playerXWins = 0
+playerOWins = 0
 //  if(winner == "X"){
-//   scoreOne.textContent = playerOneWins++}
+//   scoreOne.textContent = playerXWins++}
 
 //intializer
 start()
@@ -21,15 +21,18 @@ function start(){
         "","","",
         "","",""
     ];
-marker()
+    marker();
 }
 
 function marker(){
     board.forEach(function(mark, index){
-
              squares[index].textContent = mark; 
-    })
+    });
     messages.textContent = win === "T"? `It is a tie!`: win ? `${win} wins!` : `It is ${turn}'s turn`;
+   // if(messages.textContent === "X" || "O"){
+   //     document.getElementById('board').removeEventListener('click', handleTurn)
+   // }
+    
 }   
 
 function handleTurn(event){
@@ -60,7 +63,10 @@ function getWinner(){
     winningCombos.forEach(function(combo, index){
         if(board[combo[0]] && board[combo[0]] == board[combo[1]] && board[combo[0]] == board[combo[2]] && board[combo[0]])
         winner = board[combo[0]];
-        console.log(winner)
+        if(winner !== null){
+        
+        }
+
     })
     return winner ? winner : board.includes("") ? null : "T";
 }
