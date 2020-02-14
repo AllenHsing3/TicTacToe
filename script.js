@@ -22,6 +22,7 @@ function start(){
         "","",""
     ];
     marker();
+    document.getElementById('board').addEventListener('click', handleTurn)
 }
 
 function marker(){
@@ -29,10 +30,9 @@ function marker(){
              squares[index].textContent = mark; 
     });
     messages.textContent = win === "T"? `It is a tie!`: win ? `${win} wins!` : `It is ${turn}'s turn`;
-   // if(messages.textContent === "X" || "O"){
-   //     document.getElementById('board').removeEventListener('click', handleTurn)
-   // }
-    
+    if(messages.textContent === `${win} wins!`){
+        document.getElementById('board').removeEventListener('click', handleTurn)
+   }
 }   
 
 function handleTurn(event){
@@ -44,7 +44,8 @@ function handleTurn(event){
         turn = turn == "X" ? "O" : "X";
         win = getWinner()
         marker()
-    }else marker()
+    }
+    marker()
 }
 
 let winningCombos = [
@@ -64,9 +65,7 @@ function getWinner(){
         if(board[combo[0]] && board[combo[0]] == board[combo[1]] && board[combo[0]] == board[combo[2]] && board[combo[0]])
         winner = board[combo[0]];
         if(winner !== null){
-        
         }
-
     })
     return winner ? winner : board.includes("") ? null : "T";
 }
